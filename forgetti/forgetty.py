@@ -1,5 +1,7 @@
 from item import make_item, items
 
+def greet():
+    print("You currently have X items in your forgetti vault!")
 
 def add():    
     title = raw_input("What do you want to remember?")
@@ -11,4 +13,6 @@ def query():
     print("Listing all items.")
     for item in items:
         print(item.title)
-    return "Query"
+
+if __name__ == "__main__":
+    greet()

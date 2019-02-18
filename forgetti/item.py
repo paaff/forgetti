@@ -14,5 +14,3 @@ class Item(object):
 def make_item(title, group):
     fresh = Item(title, group)
     items.append(fresh)
-
-
