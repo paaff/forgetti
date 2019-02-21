@@ -29,5 +29,5 @@ cli.add_command(add)
 cli.add_command(query)
 cli.add_command(status)
 
-if __name__ == "__main__":
-        cli()
+#if __name__ == "__main__":
+#        cli()
