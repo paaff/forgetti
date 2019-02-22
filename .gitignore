@@ -134,4 +134,7 @@ dmypy.json
 # Ignore all local history of files
 .history
 
+# Don't upload notes.data
+notes.data
+
 # End of https://www.gitignore.io/api/python,visualstudiocode
