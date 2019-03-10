@@ -1,6 +1,7 @@
 import click
 import pickle
 from item import make_item
+from datetime import date, datetime
 
 
 @click.group()
@@ -11,8 +12,12 @@ def cli():
 @click.command(help='Add a new note.')
 @click.argument('group', type=click.STRING, required=True)
 @click.argument('note', type=click.STRING, required=True)
-def add(note, group):
-    make_item(note, group)
+@click.option('--deadline', '-d', type=click.STRING, help='Deadline in format "date-month", e.g. 23-06')
+def add(note, group, deadline):
+    d = datetime.strptime(deadline, "%d-%m").date()
+    d = d.replace(year=date.today().year)
+    
+    make_item(note, group, d)
 
 
 @click.command(help='Query existing notes by group.')
@@ -24,8 +29,10 @@ def query(group):
     except (FileNotFoundError):
        print('Error, no notes found.')
 
+    # Sort in respect to dates.
+    items.sort(key=lambda item: item.deadline)
     for i in items:
-        click.echo(i.note)
+        click.echo('Note: {}, Group: {}, Deadline: {}'.format(i.note, i.group, i.deadline))
 
 
 cli.add_command(add)
