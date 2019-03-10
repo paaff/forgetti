@@ -39,4 +39,4 @@ cli.add_command(add)
 cli.add_command(query)
 
 if __name__ == "__main__":
-     cli()
+    cli()
