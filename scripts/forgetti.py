@@ -31,8 +31,17 @@ def query(group):
 
     # Sort in respect to dates.
     items.sort(key=lambda item: item.deadline)
-    for i in items:
-        click.echo('Note: {}, Group: {}, Deadline: {}'.format(i.note, i.group, i.deadline))
+    show(items)
+
+
+def show(items):
+   click.echo('Current notes in database: ', nl=False)
+   click.secho('{}'.format(len(items)), fg='magenta')
+
+   for i in items:
+      click.echo('Note: {}, Group: {}, Deadline: {}'.format(i.note, i.group, i.deadline))
+   
+
 
 
 cli.add_command(add)
