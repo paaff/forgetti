@@ -20,8 +20,8 @@ def add(note, group, deadline):
     make_item(note, group, d)
 
 
-@click.command(help='Query existing notes by group.')
-@click.argument('group', type=click.STRING)
+@click.command(help='Query existing notes by group. If no group is specified, all notes are included.')
+@click.option('--group', '-g', type=click.STRING, help='Specify a group to filter notes on.')
 def query(group):
     # Load from data file if it exist.
     try:
@@ -31,13 +31,18 @@ def query(group):
 
     # Sort in respect to dates.
     items.sort(key=lambda item: item.deadline)
-    filtered_groups = list(filter(lambda x: x.group == group, items))
-    show(filtered_groups)
+
+    # Is a group specified?
+    if (group):
+        filtered_groups = list(filter(lambda x: x.group == group, items))
+        show(filtered_groups)
+    else:
+        show(items)
     
 
 
 def show(items):
-   click.echo('Current notes in database: ', nl=False)
+   click.echo('Amount of notes: ', nl=False)
    click.secho('{}'.format(len(items)), fg='magenta')
 
    for i in items:
