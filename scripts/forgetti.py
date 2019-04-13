@@ -31,23 +31,28 @@ def query(group):
 
     # Sort in respect to dates.
     items.sort(key=lambda item: item.deadline)
+    
+
 
     # Is a group specified?
     if (group):
         filtered_groups = list(filter(lambda x: x.group == group, items))
+        click.echo('Notes remembered by forgetti: ', nl=False)
+        click.secho('{}\n'.format(len(filtered_groups)), fg='magenta')
         show(filtered_groups)
     else:
+        click.echo('Notes (filtered) remembered by forgetti: ', nl=False)
+        click.secho('{}\n'.format(len(items)), fg='magenta')
         show(items)
     
 
 
 def show(items):
-   click.echo('Amount of notes: ', nl=False)
-   click.secho('{}'.format(len(items)), fg='magenta')
-
-   for i in items:
-      click.echo('Note: {}, Group: {}, Deadline: {}'.format(i.note, i.group, i.deadline))
-   
+    for index, item in enumerate(items):
+        click.secho('    {}: '.format(index), fg='blue', nl=False)
+        click.secho('{}'.format(item.note), fg='white')
+        click.echo('    Forgetti deadline: ', nl=False)
+        click.secho('{}\n'.format(item.deadline), fg='green')       
 
 
 
