@@ -31,7 +31,9 @@ def query(group):
 
     # Sort in respect to dates.
     items.sort(key=lambda item: item.deadline)
-    show(items)
+    filtered_groups = list(filter(lambda x: x.group == group, items))
+    show(filtered_groups)
+    
 
 
 def show(items):
