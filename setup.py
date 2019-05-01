@@ -9,8 +9,4 @@ setup(
     install_requires=[
         'Click',
     ],
-    entry_points='''
-        [console_scripts]
-        forgetti=forgetti.scripts.forgetti:cli
-    ''',
 )
