@@ -2,6 +2,8 @@ import pickle
 import time
 from datetime import date 
 
+FILENAME = ".notes.forgetti"
+
 class Item(object):
     note = ""
     group = ""
@@ -18,7 +20,7 @@ def make_item(note, group, deadline):
 
     # Load from data file if it exist.
     try:
-       items = pickle.load(open("notes.data", "rb"))
+       items = pickle.load(open(FILENAME, "rb"))
     except (FileNotFoundError):
         # Alright to fail, just means this it the first note.
         pass
@@ -27,4 +29,4 @@ def make_item(note, group, deadline):
     items.append(fresh)
 
     # Save the notes
-    pickle.dump(items, open("notes.data", "wb"))
+    pickle.dump(items, open(FILENAME, "wb"))

@@ -135,6 +135,7 @@ dmypy.json
 .history
 
 # Don't upload notes.data
-notes.data
+.notes.forgetti
+notes.forgetti
 
 # End of https://www.gitignore.io/api/python,visualstudiocode
